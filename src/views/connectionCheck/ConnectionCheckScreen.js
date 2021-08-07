@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Grid, Button, Alert, Container } from '@material-ui/core';
 
+import Loading from '../../ui-component/loadingComponent/Loading';
+
 //وارد کردن تابع اکشن مربوط به تست ارتباط
 import { checkConnection } from '../../actions/user.action';
 
@@ -61,7 +63,12 @@ const ConnectionCheckScreen = () => {
 			</div>
 
 			{loading ? (
-				<h3>در حال بررسی ارتباط با سرور ...</h3>
+				<Container maxWidth="sm">
+					<h3>در حال بررسی ارتباط با سرور ...</h3>
+					<div>
+						<Loading />
+					</div>
+				</Container>
 			) : error ? (
 				<div>
 					<Alert severity="error">{error}</Alert>
