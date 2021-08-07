@@ -45,8 +45,8 @@ export const checkConnection = () => async (dispatch, getState) => {
 			dispatch({ type: userConstants.USER_LOGIN_FAIL, payload: 'توکن شما موجود نیست' });
 		}
 
-		//ارسال درخواست پست برای بررسی تست ارتباط
-		const { data } = await axios.post('/api', { headers: { Authorization: `Barer ${token}` } });
+		//ارسال درخواست گت برای بررسی تست ارتباط
+		const { data } = await axios.get('/api', { headers: { Authorization: `Bearer ${token}` } });
 
 		dispatch({ type: userConstants.CHECK_CONNECTION_SUCEESS, payload: data });
 	} catch (error) {
