@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Grid, Button, Alert } from '@material-ui/core';
+import { Grid, Button, Alert, Container } from '@material-ui/core';
 
 //وارد کردن تابع اکشن مربوط به تست ارتباط
 import { checkConnection } from '../../actions/user.action';
@@ -8,9 +8,31 @@ import { checkConnection } from '../../actions/user.action';
 const ConnectionCheckScreen = () => {
 	const dispatch = useDispatch();
 
+	//تعریف یک استیت برای ذخیره عکس وضعیت ارتباط با سامانه
+	const [ imageUrlTestConnection, setImageUrlTestConnection ] = useState('');
+
 	//استخراج استیت های مربوط به تست ارتباط
 	const connectionCheck = useSelector((state) => state.connectionCheck);
-	const { loading, error, message } = connectionCheck;
+	const { loading, error, success } = connectionCheck;
+
+	/*این تابع برای ست کردن عکس با توجه به وضعیت ارتباط با سرور می باشد 
+	لینک های مربوط به عکس ها با توجه به موفقیت امیز بودن ارتباط یا نبودن در
+	setImageUrlTestConnectio قرار میگیرند
+	*/
+	useEffect(
+		() => {
+			if (success === 'true') {
+				//عکس مربوط به موفقیت امیز بودن ارتباط
+				setImageUrlTestConnection('لینک عکس مربوط به موفق بودن ارتباط');
+			} else if (success === 'false') {
+				// عکس مربوط به ناموفق بودن پروژه
+				setImageUrlTestConnection('لینک عکس مربوط به ناموفق بودن ارتباط');
+			} else {
+				setImageUrlTestConnection('');
+			}
+		},
+		[ success ]
+	);
 
 	//تابع اجرای بررسی تست ارتباط
 	const handleCheckConnection = (e) => {
@@ -26,7 +48,7 @@ const ConnectionCheckScreen = () => {
 				<Grid container spacing={3}>
 					<Grid item xs={12} sm={9}>
 						<div>
-						<h5 style={{ fontSize: '18px' }}>برای بررسی ارتباط با سامانه بر روی دکمه کلیک کنید.</h5>
+							<h5 style={{ fontSize: '18px' }}>برای بررسی ارتباط با سامانه بر روی دکمه کلیک کنید.</h5>
 						</div>
 					</Grid>
 
@@ -44,10 +66,10 @@ const ConnectionCheckScreen = () => {
 				<div>
 					<Alert severity="error">{error}</Alert>
 				</div>
-			) : message ? (
-				<div>
-					<Alert severity="success">{message}</Alert>
-				</div>
+			) : imageUrlTestConnection ? (
+				<Container maxWidth="sm">
+					<img src={imageUrlTestConnection} alt="connection status success" style={{ width: '100%' }} />
+				</Container>
 			) : null}
 		</div>
 	);
