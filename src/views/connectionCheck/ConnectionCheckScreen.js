@@ -15,7 +15,7 @@ const ConnectionCheckScreen = () => {
 
 	//استخراج استیت های مربوط به تست ارتباط
 	const connectionCheck = useSelector((state) => state.connectionCheck);
-	const { loading, error, success } = connectionCheck;
+	const { loading, error, isAlive } = connectionCheck;
 
 	/*این تابع برای ست کردن عکس با توجه به وضعیت ارتباط با سرور می باشد 
 	لینک های مربوط به عکس ها با توجه به موفقیت امیز بودن ارتباط یا نبودن در
@@ -23,17 +23,17 @@ const ConnectionCheckScreen = () => {
 	*/
 	useEffect(
 		() => {
-			if (success === 'true') {
+			if (isAlive === 'true') {
 				//عکس مربوط به موفقیت امیز بودن ارتباط
 				setImageUrlTestConnection('لینک عکس مربوط به موفق بودن ارتباط');
-			} else if (success === 'false') {
+			} else if (isAlive === 'false') {
 				// عکس مربوط به ناموفق بودن پروژه
 				setImageUrlTestConnection('لینک عکس مربوط به ناموفق بودن ارتباط');
 			} else {
 				setImageUrlTestConnection('');
 			}
 		},
-		[ success ]
+		[ isAlive ]
 	);
 
 	//تابع اجرای بررسی تست ارتباط

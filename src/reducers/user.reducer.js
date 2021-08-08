@@ -22,7 +22,7 @@ export const connectionCheckReducer = (state = {}, action) => {
 		case userConstants.CHECK_CONNECTION_REQUEST:
 			return { ...state, loading: true, error: '' };
 		case userConstants.CHECK_CONNECTION_SUCEESS:
-			return { ...state, loading: false, success: action.payload.data.isAlive ? 'true' : 'false' };
+			return { ...state, loading: false, isAlive: action.payload.data.isAlive ? 'true' : 'false' };
 		case userConstants.CHECK_CONNECTION_FAIL:
 			return { ...state, loading: false, error: action.payload };
 		default:
