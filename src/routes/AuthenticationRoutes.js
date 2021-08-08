@@ -20,7 +20,7 @@ const AuthenticationRoutes = () => {
 	const { userInfo } = useSelector((state) => state.userLogin);
 
 	return (
-		<Route path={[ '/user/login', '/user/resetpassword', '/user/checkemail', '/pages/register/register3' ]}>
+		<Route path={[ '/user/login', '/user/resetpassword', '/user/forgetpassword', '/pages/register/register3' ]}>
 			<MinimalLayout>
 				<ErrorBoundary>
 					<Switch location={location} key={location.pathname}>

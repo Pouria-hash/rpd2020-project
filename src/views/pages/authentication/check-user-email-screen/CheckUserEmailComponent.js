@@ -167,7 +167,10 @@ const CheckUserEmailComponent = ({ className, ...rest }) => {
 							className={classes.loginput}
 							variant="outlined"
 						>
-							<label htmlFor="outlined-adornment-email-register" style={{ fontSize: '17px' }}>
+							<label
+								htmlFor="outlined-adornment-email-register"
+								style={{ fontSize: '19px', marginBottom: '8px' }}
+							>
 								نام کاربری / ایمیل
 							</label>
 							<OutlinedInput

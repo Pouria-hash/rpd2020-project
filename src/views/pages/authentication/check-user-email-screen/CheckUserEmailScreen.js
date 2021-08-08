@@ -110,7 +110,9 @@ const CheckUserEmailScreen = () => {
 										<CheckUserEmailComponent />
 									</Grid>
 									<Grid item xs={12}>
-										<Link to="/user/login">بازگشت به صفحه ورود</Link>
+										<Link to="/user/login" style={{ color: '#000000b0', textDecoration: 'none' }}>
+											بازگشت به صفحه ورود
+										</Link>
 									</Grid>
 								</Grid>
 							</CardContent>

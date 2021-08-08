@@ -291,7 +291,12 @@ const FirebaseLogin = (props, { className, ...rest }) => {
 							</Grid>
 							{
 								<Grid item>
-									<Typography component={Link} to="/user/checkemail" variant="subtitle1">
+									<Typography
+										component={Link}
+										to="/user/forgetpassword"
+										variant="subtitle1"
+										style={{ textDecoration: 'none' }}
+									>
 										فراموشی کلمه عبور؟
 									</Typography>
 								</Grid>
