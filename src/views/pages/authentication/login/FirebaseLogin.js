@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import clsx from 'clsx';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
-//import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Loading from '../../../../ui-component/loadingComponent/Loading';
 
 import {
@@ -20,7 +20,7 @@ import {
 	InputLabel,
 	makeStyles,
 	OutlinedInput,
-	// Typography,
+	Typography,
 	Alert
 } from '@material-ui/core';
 
@@ -289,13 +289,13 @@ const FirebaseLogin = (props, { className, ...rest }) => {
 									label={<React.Fragment>به خاطر بسپار</React.Fragment>}
 								/>
 							</Grid>
-							{/* <Grid item>
-								<Typography
-									component={Link}
-									to="/user/resetpassword"
-									variant="subtitle1"
-								>فراموشی کلمه عبور؟</Typography>
-							</Grid> */}
+							{
+								<Grid item>
+									<Typography component={Link} to="/user/checkemail" variant="subtitle1">
+										فراموشی کلمه عبور؟
+									</Typography>
+								</Grid>
+							}
 						</Grid>
 						{errors.submit && (
 							<Box mt={3}>

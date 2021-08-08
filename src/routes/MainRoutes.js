@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux';
 
 import MainLayout from './../layout/MainLayout';
 
+import ErrorBoundary from '../ui-component/ErrorBoundary/ErrorBoundary';
+
 // ایمپورت کامپوننت صفحه های برنامه
 const DashboardDefault = lazy(() => import('../views/dashboard/Default'));
 const TableBasic = lazy(() => import('../views/forms/tables/TableBasic'));
@@ -29,25 +31,27 @@ const MainRoutes = () => {
 			]}
 		>
 			<MainLayout showBreadcrumb={true}>
-				<Switch location={location} key={location.pathname}>
-					{/* مسیر مربوط به صفحه داشبورد */}
-					<Route
-						path="/dashboard/default"
-						render={() => (userInfo ? <DashboardDefault /> : <Redirect to="/user/login" />)}
-					/>
-					{/*مسیر مربوط به تست ارتباط با سرور*/}
-					<Route
-						path="/connection"
-						render={() => (userInfo ? <ConnectionCheckScreen /> : <Redirect to="/user/login" />)}
-					/>
-					{/*مسیر مربوط به تغییر رمز ورود */}
-					<Route
-						path="/user/changepassword"
-						render={() => (userInfo ? <ChangePasswordScreen /> : <Redirect to="/user/login" />)}
-					/>
-					<Route path="/tables/tbl-basic" component={TableBasic} />
-					<Route path="/tables/tbl-dense" component={TableDense} />
-				</Switch>
+				<ErrorBoundary>
+					<Switch location={location} key={location.pathname}>
+						{/* مسیر مربوط به صفحه داشبورد */}
+						<Route
+							path="/dashboard/default"
+							render={() => (userInfo ? <DashboardDefault /> : <Redirect to="/user/login" />)}
+						/>
+						{/*مسیر مربوط به تست ارتباط با سرور*/}
+						<Route
+							path="/connection"
+							render={() => (userInfo ? <ConnectionCheckScreen /> : <Redirect to="/user/login" />)}
+						/>
+						{/*مسیر مربوط به تغییر رمز ورود */}
+						<Route
+							path="/user/changepassword"
+							render={() => (userInfo ? <ChangePasswordScreen /> : <Redirect to="/user/login" />)}
+						/>
+						<Route path="/tables/tbl-basic" component={TableBasic} />
+						<Route path="/tables/tbl-dense" component={TableDense} />
+					</Switch>
+				</ErrorBoundary>
 			</MainLayout>
 		</Route>
 	);
