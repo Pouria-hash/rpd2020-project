@@ -42,8 +42,6 @@ const ConnectionCheckScreen = () => {
 		dispatch(checkConnection());
 	};
 
-	throw Error;
-
 	return (
 		<div>
 			<div style={{ marginBottom: '20px' }}>
